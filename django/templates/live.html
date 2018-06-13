@@ -1,7 +1,7 @@
 {% extends "site.html" %}
 {% load humanize i18n static %}
   {% block main %}
-    <script> var ws = new WebSocket('wss://' + location.host + '/ws/moac'); </script>
+    <script> var ws_port = ''; if ( location.port ) { ws_port = ':3003'; }; var ws = new WebSocket(location.protocol.replace('http','ws') + '//' + location.hostname + ws_port + '/ws/moac'); </script>
     <div class="grid-container full">
       <a name="Statistics"></a>
       <div class="grid-x">

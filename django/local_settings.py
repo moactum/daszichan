@@ -2,7 +2,6 @@ import os
 from datetime import timedelta
 from daszichan.settings import INSTALLED_APPS, BASE_DIR, SECRET_KEY
 from rest_framework.settings import api_settings
-#BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ALLOWED_HOSTS = ['*',]
 
@@ -10,9 +9,9 @@ INSTALLED_APPS += [
 	'django.contrib.humanize',
 	'django.contrib.admindocs',
 	'django.contrib.postgres',
-	#'mptt',
 	'corsheaders',
 	'rest_framework',
+	#to use whitenoise, uncomment staticfiles from dasizchan.settings first
 	#'whitenoise.runserver_nostatic',
 	'django.contrib.staticfiles',
 	'common',
@@ -54,25 +53,23 @@ DATABASES = {
 #	},
 	#'dbpostgresql': {
 	'default': {
-		#'ENGINE': 'django.db.backends.mysql',
 		'ENGINE': 'django.db.backends.postgresql',
 		'NAME': 'xcliu',								  # Or path to database file if using sqlite3.
 		'HOST': '',						  # Set to empty string for localhost. Not used with sq
 		'USER': 'xcliu',								# Not used with sqlite3.
 		'PASSWORD': '',				  # Not used with sqlite3.
-		'PORT': '5432',
-		#'OPTIONS': {'charset': 'utf8mb4'}
+		'PORT': '5432'
 	}
 }
 
-#LOGIN_REDIRECT_URL = "/task.jsp/"
 #LOGIN_URL = "/accounts/login/"
 #LOGOUT_URL = "/accounts/logout/"
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'static'))
+STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-#STATICFILES_DIRS = (
-#	os.path.join(BASE_DIR, 'static'),
-#	)
+STATICFILES_DIRS = (
+	os.path.join(BASE_DIR, 'static'),
+	)
 
 SIMPLE_JWT = {
 	'ACCESS_TOKEN_LIFETIME': timedelta(days=3),
@@ -132,5 +129,5 @@ API_CHAIN3 = 'http://localhost:3003/api'
 LOCALE_PATHS = [
 	os.path.join(BASE_DIR, 'locale')
 ]
-DEBUG = False
-#DEBUG = True
+#DEBUG = False
+DEBUG = True

@@ -8,8 +8,8 @@ from django.db.models import F, Sum, Avg, Count
 
 def homepage(_):
 	#NUM_LATEST = 5
-	stat_ledger = JsonStat.objects.get(metric='ledger')
-	stat_coinmarket = JsonStat.objects.get(metric='coinmarket')
+	stat_ledger,created = JsonStat.objects.get_or_create(id=1,metric='ledger')
+	stat_coinmarket,created = JsonStat.objects.get_or_create(id=2,metric='coinmarket')
 	ds_ledger = DataPool(
 		series=[
 		{
