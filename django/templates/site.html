@@ -60,7 +60,7 @@
       <div class="grid-x grid-margin-x text-center align-center-middle">
         <div class="cell">
           <div id="search-form-mobile" style="" class="">
-              <input id="txtSearchInputMobile" v-model="txtSearchInputMobile" v-on:keyup.enter="submit" type="text" placeholder="Search for Account, Tx Hash or Data" class="form-control" style="text-align: center;" name="q" maxlength="100" title="Address, Contract, Txn Hash or Data" />
+              <input id="txtSearchInputMobile" v-model="txtSearchInputMobile" v-on:keyup.enter="submit" type="text" placeholder="Search for Wallet, Tx Hash, Ledger Hash or Ledger height" class="form-control" style="text-align: center;" name="q" maxlength="100" title="Wallet, Tx Hash, Ledger Hash or Ledger height" />
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@
                   data: { txtSearchInputMobile: '' },
                   methods: {
                     submit: function() {
-                        location.assign(`/api/search/${this._data.txtSearchInputMobile}`);
+                        location.assign(`/api/search/${this._data.txtSearchInputMobile.toLowerCase()}`);
                     }
                   }
               });
